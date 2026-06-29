@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <h1>Hospital Management System</h1>
+        <nav>
+            <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+            <button class="nav-btn" data-section="pacientes">Pacientes</button>
+            <button class="nav-btn" data-section="doctores">Doctores</button>
+            <button class="nav-btn" data-section="citas">Citas</button>
+            <button class="nav-btn" data-section="historias">Historias Clínicas</button>
+        </nav>
+    </header>
+
+    <!-- ========== ALERT CONTAINER ========== -->
+    <div class="container">
+        <div id="alert-container"></div>
+    </div>
+
+    <!-- ========== DASHBOARD ========== -->
+    <main class="container">
+        <section id="section-dashboard" class="section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-total-pacientes">—</div>
+                    <div class="stat-label">Pacientes Registrados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-total-doctores">—</div>
+                    <div class="stat-label">Doctores Activos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-citas-hoy">—</div>
+                    <div class="stat-label">Citas Programadas Hoy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-edad-promedio">—</div>
+                    <div class="stat-label">Edad Promedio Pacientes</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PACIENTES ========== -->
+        <section id="section-pacientes" class="section">
+            <div class="toolbar">
+                <h2>Pacientes</h2>
+                <div style="display:flex;gap:0.5rem;">
+                    <input type="text" id="search-pacientes"
+                           placeholder="Buscar por nombre..." style="padding:0.5rem;border:1.5px solid #d1d5db;border-radius:6px;width:250px;">
+                    <button class="btn btn-primary" id="btn-nuevo-paciente">+ Nuevo Paciente</button>
+                </div>
+            </div>
+            <table id="pacientes-table">
+                <thead>
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- ========== DOCTORES ========== -->
+        <section id="section-doctores" class="section">
+            <div class="toolbar">
+                <h2>Doctores</h2>
+                <div style="display:flex;gap:0.5rem;">
+                    <input type="text" id="search-doctores"
+                           placeholder="Buscar por especialidad..." style="padding:0.5rem;border:1.5px solid #d1d5db;border-radius:6px;width:250px;">
+                    <button class="btn btn-primary" id="btn-nuevo-doctor">+ Nuevo Doctor</button>
+                </div>
+            </div>
+            <table id="doctores-table">
+                <thead>
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>Especialidad</th>
+                        <th>Email</th>
+                        <th>Consultorio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- ========== CITAS ========== -->
+        <section id="section-citas" class="section">
+            <div class="toolbar">
+                <h2>Citas Médicas</h2>
+                <div style="display:flex;gap:0.5rem;">
+                    <select id="filter-estado-citas"
+                            style="padding:0.5rem;border:1.5px solid #d1d5db;border-radius:6px;">
+                        <option value="">Todos los estados</option>
+                        <option value="PROGRAMADA">Programadas</option>
+                        <option value="COMPLETADA">Completadas</option>
+                        <option value="CANCELADA">Canceladas</option>
+                    </select>
+                    <button class="btn btn-primary" id="btn-nueva-cita">+ Nueva Cita</button>
+                </div>
+            </div>
+            <table id="citas-table">
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Doctor</th>
+                        <th>Fecha y Hora</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- ========== HISTORIAS CLINICAS ========== -->
+        <section id="section-historias" class="section">
+            <div class="toolbar">
+                <h2>Historias Clínicas</h2>
+                <button class="btn btn-primary" id="btn-nueva-historia">+ Nueva Historia Clínica</button>
+            </div>
+            <table id="historias-table">
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Doctor</th>
+                        <th>Fecha</th>
+                        <th>Diagnóstico</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- ========== MODAL PACIENTE ========== -->
+    <div class="modal-overlay" id="modal-paciente">
+        <div class="modal">
+            <h3>Formulario de Paciente</h3>
+            <form id="paciente-form">
+                <input type="hidden" id="paciente-id">
+                <div class="form-group">
+                    <label for="paciente-nombre">Nombre *</label>
+                    <input type="text" id="paciente-nombre" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="paciente-apellido">Apellido *</label>
+                    <input type="text" id="paciente-apellido" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="paciente-email">Email</label>
+                    <input type="email" id="paciente-email" maxlength="150">
+                </div>
+                <div class="form-group">
+                    <label for="paciente-telefono">Teléfono</label>
+                    <input type="text" id="paciente-telefono" maxlength="20"
+                           placeholder="0991234567">
+                </div>
+                <div class="form-group">
+                    <label for="paciente-direccion">Dirección</label>
+                    <input type="text" id="paciente-direccion" maxlength="255">
+                </div>
+                <div class="form-group">
+                    <label for="paciente-fecha-nacimiento">Fecha de Nacimiento</label>
+                    <input type="date" id="paciente-fecha-nacimiento">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline"
+                            onclick="PacientesModule.cerrarFormulario()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL DOCTOR ========== -->
+    <div class="modal-overlay" id="modal-doctor">
+        <div class="modal">
+            <h3>Formulario de Doctor</h3>
+            <form id="doctor-form">
+                <input type="hidden" id="doctor-id">
+                <div class="form-group">
+                    <label for="doctor-nombre">Nombre *</label>
+                    <input type="text" id="doctor-nombre" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-apellido">Apellido *</label>
+                    <input type="text" id="doctor-apellido" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-especialidad">Especialidad</label>
+                    <input type="text" id="doctor-especialidad" maxlength="100"
+                           placeholder="Ej: Cardiología, Pediatría...">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-email">Email</label>
+                    <input type="email" id="doctor-email" maxlength="150">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-telefono">Teléfono</label>
+                    <input type="text" id="doctor-telefono" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-consultorio">Consultorio</label>
+                    <input type="text" id="doctor-consultorio" maxlength="50"
+                           placeholder="Ej: CONS-101">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline"
+                            onclick="DoctoresModule.cerrarFormulario()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL CITA ========== -->
+    <div class="modal-overlay" id="modal-cita">
+        <div class="modal">
+            <h3>Formulario de Cita</h3>
+            <form id="cita-form">
+                <input type="hidden" id="cita-id">
+                <div class="form-group">
+                    <label for="cita-paciente">Paciente *</label>
+                    <select id="cita-paciente" required>
+                        <option value="">Seleccione un paciente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cita-doctor">Doctor *</label>
+                    <select id="cita-doctor" required>
+                        <option value="">Seleccione un doctor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cita-fecha-hora">Fecha y Hora *</label>
+                    <input type="datetime-local" id="cita-fecha-hora" required>
+                </div>
+                <div class="form-group">
+                    <label for="cita-motivo">Motivo</label>
+                    <input type="text" id="cita-motivo" maxlength="255">
+                </div>
+                <div class="form-group">
+                    <label for="cita-estado">Estado</label>
+                    <select id="cita-estado">
+                        <option value="PROGRAMADA">Programada</option>
+                        <option value="COMPLETADA">Completada</option>
+                        <option value="CANCELADA">Cancelada</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline"
+                            onclick="CitasModule.cerrarFormulario()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODAL HISTORIA CLINICA ========== -->
+    <div class="modal-overlay" id="modal-historia">
+        <div class="modal">
+            <h3>Formulario de Historia Clínica</h3>
+            <form id="historia-form">
+                <div class="form-group">
+                    <label for="historia-paciente">Paciente *</label>
+                    <select id="historia-paciente" required>
+                        <option value="">Seleccione un paciente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="historia-doctor">Doctor</label>
+                    <select id="historia-doctor">
+                        <option value="">Seleccione un doctor (opcional)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="historia-diagnostico">Diagnóstico *</label>
+                    <!-- BUG INTENCIONAL: textarea sin sanitizacion, permite XSS almacenado -->
+                    <textarea id="historia-diagnostico" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="historia-tratamiento">Tratamiento</label>
+                    <textarea id="historia-tratamiento" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="historia-observaciones">Observaciones</label>
+                    <textarea id="historia-observaciones" rows="2"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline"
+                            onclick="HistoriasModule.cerrarFormulario()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p>Hospital Management System — Proyecto de Validación y Verificación de Software — EPN 2026A</p>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/pacientes.js"></script>
+    <script src="js/doctores.js"></script>
+    <script src="js/citas.js"></script>
+    <script src="js/historias.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
