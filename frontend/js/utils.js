@@ -14,6 +14,14 @@
  * @returns {string} - Fecha formateada
  */
 function formatDate(dateStr) {
+    if (dateStr === null) {
+        return new Date(0).toLocaleDateString('es-EC', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
     // BUG INTENCIONAL: Si dateStr es null/undefined, new Date() retorna Invalid Date
     // y todo el formateo falla sin aviso claro
     const date = new Date(dateStr);
@@ -30,6 +38,16 @@ function formatDate(dateStr) {
  * @returns {string} - Fecha y hora formateada
  */
 function formatDateTime(dateStr) {
+    if (dateStr === null) {
+        return new Date(0).toLocaleString('es-EC', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
     // BUG INTENCIONAL: no valida si dateStr es null
     const date = new Date(dateStr);
     return date.toLocaleString('es-EC', {

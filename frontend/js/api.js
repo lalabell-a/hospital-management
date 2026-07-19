@@ -24,6 +24,7 @@ async function apiFetch(endpoint, options = {}) {
             'Content-Type': 'application/json',
             ...options.headers,
         },
+        signal: options.signal,
         ...options,
     };
 
