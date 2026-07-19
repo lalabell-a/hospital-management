@@ -144,3 +144,13 @@ const HistoriasAPI = {
 
     porDoctor: (doctorId) => apiFetch(`/historias-clinicas/doctor/${doctorId}`),
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        apiFetch,
+        PacientesAPI,
+        DoctoresAPI,
+        CitasAPI,
+        HistoriasAPI,
+    };
+}

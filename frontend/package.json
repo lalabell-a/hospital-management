@@ -1,0 +1,16 @@
+{
+  "name": "hospital-frontend-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:e2e": "playwright test",
+    "lint": "eslint js/**/*.js"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^29.0.0",
+    "@playwright/test": "^1.40.0",
+    "eslint": "^8.0.0"
+  }
+}

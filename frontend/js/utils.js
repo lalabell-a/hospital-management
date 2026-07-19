@@ -124,3 +124,16 @@ function localToISO(localDateTime) {
     // En Ecuador (GMT-5) hay una diferencia de 5 horas
     return new Date(localDateTime).toISOString();
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        formatDate,
+        formatDateTime,
+        escapeHTML,
+        showAlert,
+        validateEmail,
+        validateTelefono,
+        isFutureDate,
+        localToISO,
+    };
+}
