@@ -74,6 +74,8 @@ describe('api.js', () => {
     const pending = apiFetch('/historias-clinicas');
 
     expect(pending).toBeInstanceOf(Promise);
-    expect(globalThis.fetch).toHaveBeenCalledWith('http://localhost:8080/api/historias-clinicas', expect.objectContaining({ signal: undefined }));
+    expect(globalThis.fetch).toHaveBeenCalledWith('http://localhost:8080/api/historias-clinicas', expect.objectContaining({
+      headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
+    }));
   });
 });

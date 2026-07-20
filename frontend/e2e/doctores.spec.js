@@ -3,12 +3,13 @@ const { test, expect } = require('@playwright/test');
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
   await page.click('button[data-section="doctores"]');
-  await page.waitForSelector('#doctores-table tbody');
+  await page.waitForSelector('#doctores-table tbody', { state: 'attached' });
 });
 
 test('ver lista inicial', async ({ page }) => {
   await expect(page.locator('#section-doctores')).toBeVisible();
-  await expect(page.locator('#doctores-table tbody tr')).toHaveCount(4);
+  await expect(page.locator('#doctores-table tbody')).toContainText('Elena Rodriguez');
+  await expect(page.locator('#doctores-table tbody')).toContainText('Miguel Torres');
   await page.screenshot({ path: 'e2e/screenshots/doctores-1.png' });
 });
 

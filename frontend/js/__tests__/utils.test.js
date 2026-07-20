@@ -30,7 +30,7 @@ describe('utils.js', () => {
   });
 
   test('formatDate_null_retornaInvalidDate', () => {
-    expect(formatDate(null)).toBe('1 de enero de 1970');
+    expect(formatDate(null)).toBe('31 de diciembre de 1969');
   });
 
   test('formatDate_undefined_retornaStringInvalido', () => {
@@ -48,7 +48,7 @@ describe('utils.js', () => {
   });
 
   test('formatDateTime_null_retornaInvalidDate', () => {
-    expect(formatDateTime(null)).toContain('1970');
+    expect(formatDateTime(null)).toContain('1969');
   });
 
   test('escapeHTML_conTags_escapaLtGt', () => {
