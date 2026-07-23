@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1784775118807" clover="3.2.0">
+  <project timestamp="1784775118808" name="All files">
+    <metrics statements="66" coveredstatements="66" conditionals="20" coveredconditionals="16" methods="38" coveredmethods="38" elements="124" coveredelements="120" complexity="0" loc="66" ncloc="66" packages="1" files="2" classes="2"/>
+    <file name="api.js" path="C:\Users\ionly\OneDrive - Escuela Politécnica Nacional\septimo semestre\VERIFICACIÓN Y VALIDACIÓN DE SOFTWARE\hospital-management\frontend\js\api.js">
+      <metrics statements="40" coveredstatements="40" conditionals="5" coveredconditionals="4" methods="29" coveredmethods="29"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="20" count="33" type="stmt"/>
+      <line num="22" count="33" type="stmt"/>
+      <line num="32" count="33" type="stmt"/>
+      <line num="36" count="32" type="stmt"/>
+      <line num="39" count="31" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="49" count="1" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="59" count="1" type="stmt"/>
+      <line num="64" count="1" type="stmt"/>
+      <line num="67" count="1" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
+      <line num="73" count="1" type="stmt"/>
+      <line num="75" count="1" type="stmt"/>
+      <line num="77" count="2" type="stmt"/>
+      <line num="82" count="1" type="stmt"/>
+      <line num="87" count="1" type="stmt"/>
+      <line num="93" count="1" type="stmt"/>
+      <line num="97" count="1" type="stmt"/>
+      <line num="102" count="1" type="stmt"/>
+      <line num="103" count="1" type="stmt"/>
+      <line num="105" count="1" type="stmt"/>
+      <line num="107" count="1" type="stmt"/>
+      <line num="112" count="1" type="stmt"/>
+      <line num="117" count="1" type="stmt"/>
+      <line num="121" count="1" type="stmt"/>
+      <line num="123" count="1" type="stmt"/>
+      <line num="125" count="1" type="stmt"/>
+      <line num="129" count="1" type="stmt"/>
+      <line num="134" count="1" type="stmt"/>
+      <line num="135" count="1" type="stmt"/>
+      <line num="137" count="1" type="stmt"/>
+      <line num="139" count="2" type="stmt"/>
+      <line num="144" count="1" type="stmt"/>
+      <line num="146" count="1" type="stmt"/>
+      <line num="149" count="1" type="cond" truecount="3" falsecount="1"/>
+      <line num="150" count="1" type="stmt"/>
+    </file>
+    <file name="utils.js" path="C:\Users\ionly\OneDrive - Escuela Politécnica Nacional\septimo semestre\VERIFICACIÓN Y VALIDACIÓN DE SOFTWARE\hospital-management\frontend\js\utils.js">
+      <metrics statements="26" coveredstatements="26" conditionals="15" coveredconditionals="12" methods="9" coveredmethods="9"/>
+      <line num="17" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="27" count="4" type="stmt"/>
+      <line num="28" count="4" type="stmt"/>
+      <line num="41" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="42" count="1" type="stmt"/>
+      <line num="52" count="1" type="stmt"/>
+      <line num="53" count="1" type="stmt"/>
+      <line num="68" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="71" count="5" type="stmt"/>
+      <line num="85" count="1" type="stmt"/>
+      <line num="86" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="89" count="1" type="stmt"/>
+      <line num="92" count="1" type="stmt"/>
+      <line num="93" count="1" type="stmt"/>
+      <line num="103" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="106" count="4" type="stmt"/>
+      <line num="107" count="4" type="stmt"/>
+      <line num="118" count="4" type="stmt"/>
+      <line num="119" count="4" type="stmt"/>
+      <line num="128" count="3" type="stmt"/>
+      <line num="129" count="3" type="stmt"/>
+      <line num="132" count="3" type="stmt"/>
+      <line num="143" count="2" type="stmt"/>
+      <line num="146" count="1" type="cond" truecount="3" falsecount="1"/>
+      <line num="147" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
